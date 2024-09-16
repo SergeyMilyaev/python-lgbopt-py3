@@ -225,8 +225,8 @@ def line_search(f, x0, df0, p=None, f0=None, args=(), alpha_0=1.0, c=1e-4, inner
 
         iter_ += 1
         if iter_ >= maxiter:
-            print "Maximum number of iteration reached before a good step "+ \
-                    "size was found!"
+            print("Maximum number of iteration reached before a good step "+ \
+                    "size was found!")
             return x3, f3
 
         x1 = x2
@@ -238,7 +238,7 @@ def line_search(f, x0, df0, p=None, f0=None, args=(), alpha_0=1.0, c=1e-4, inner
 
 def _print_info(iter_, fval, grad_norm2):
     """ prints information about convergence"""
-    print "iter:", iter_, "fval:", fval, "|grad|:", sqrt(grad_norm2)
+    print("iter:", iter_, "fval:", fval, "|grad|:", sqrt(grad_norm2))
 
 def fmin_gd(f, df, x0, args=(), alpha_0=1.0, gtol=1e-6, maxiter=100, 
             maxiter_line_search=100, c=1e-4, inner=inner_, 
@@ -319,14 +319,14 @@ def fmin_gd(f, df, x0, args=(), alpha_0=1.0, gtol=1e-6, maxiter=100,
                                 maxiter=maxiter_line_search, 
                                 rho_lo=rho_lo, rho_hi=rho_hi)
             if f1 >= f0:
-                print "Could not minimize in the descent direction"
+                print("Could not minimize in the descent direction")
                 return x0, f0
 
         if callback is not None:
             callback(x1)
         iter_ += 1
         if iter_ >= maxiter:
-            print "Maximum number of iteration reached."
+            print("Maximum number of iteration reached.")
             return x1, f1
 
         dfx = df(x1, *args)
@@ -437,8 +437,8 @@ def fmin_lbfgs(f, df, x0, args=(), alpha_0=1.0, m=5, gtol=1e-6, maxiter=100,
                             c=c, inner=inner, maxiter=maxiter_line_search, 
                             rho_lo=rho_lo, rho_hi=rho_hi)
         if f1 >= f0:
-            print "Could not minimize in the descent direction, try "+\
-                    "steepest direction"
+            print("Could not minimize in the descent direction, try "+\
+                    "steepest direction")
             sy = []
             p = -dfx
             x1, f1 = line_search(f, x0, dfx, p=p, f0=f0, args=args,
@@ -446,14 +446,14 @@ def fmin_lbfgs(f, df, x0, args=(), alpha_0=1.0, m=5, gtol=1e-6, maxiter=100,
                             c=c, inner=inner, maxiter=maxiter_line_search, 
                             rho_lo=rho_lo, rho_hi=rho_hi)
             if f1 >= f0:
-                print "Could not minimize in the steepest direction: abort"
+                print("Could not minimize in the steepest direction: abort")
                 return x0, f0
 
         if callback is not None:
             callback(x1)
         iter_ += 1
         if iter_ >= maxiter:
-            print "Maximum number of iteration reached."
+            print("Maximum number of iteration reached.")
             return x1, f1
 
         dfx1 = df(x1, *args)
@@ -564,23 +564,23 @@ def fmin_cg(f, df, x0, args=(), alpha_0=1.0, gtol=1e-6, maxiter=100,
                             alpha_0=alpha_0, c=c,
                             inner=inner, maxiter=maxiter_line_search)
         if f1 >= f0:
-            print "Could not minimize in the descent direction, try "+\
-                    "steepest direction"
+            print("Could not minimize in the descent direction, try "+\
+                    "steepest direction")
             beta = 0.0
             p = -dfx1
             x1, f1 = line_search(f, x0, dfx, p=p, f0=f0, args=args,
                             alpha_0=alpha_0, c=c,
                             inner=inner, maxiter=maxiter_line_search)
             if f1 >= f0:
-                print "Could not minimize in the steepest direction:"+\
-                        " abort."
+                print("Could not minimize in the steepest direction:"+\
+                        " abort.")
             return x0, f0
 
         if callback is not None:
             callback(x1)
         iter_ += 1
         if iter_ >= maxiter:
-            print "Maximum number of iteration reached."
+            print("Maximum number of iteration reached.")
             return x1, f1
 
         dfx1 = df(x1, *args)

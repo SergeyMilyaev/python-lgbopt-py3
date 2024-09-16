@@ -24,7 +24,7 @@ if __name__ == '__main__':
             t0 = time()
             r = func(*args, **kwargs)
             t1 = time()
-            print "function %s ran in %0.3f ms"%(func.__name__, ((t1-t0)*1000))
+            print("function %s ran in %0.3f ms"%(func.__name__, ((t1-t0)*1000)))
             return r
         return inner
 
@@ -40,24 +40,24 @@ if __name__ == '__main__':
     x0 = np.random.randn(2)
 
     # computing the true optimum
-    print "expected result"
+    print("expected result")
     xtrue = -np.dot(inv(A),b)
-    print xtrue, obj(xtrue)
+    print(xtrue, obj(xtrue))
 
     # testing the different algorithms
-    print "testing steapest descent"
+    print("testing steapest descent")
     xopt, fopt = timer(fmin_gd)(obj, obj.grad, x0, verbose=True)
-    print "found    x:", xopt, "; fval:", fopt
-    print "expected x:", xtrue, "; fval:", obj(xtrue)
-    print 
-    print "testing l-bfgs"
+    print("found    x:", xopt, "; fval:", fopt)
+    print("expected x:", xtrue, "; fval:", obj(xtrue))
+    print() 
+    print("testing l-bfgs")
     xopt, fopt = timer(fmin_lbfgs)(obj, obj.grad, x0, verbose=True)
-    print "found    x:", xopt, "; fval:", fopt
-    print "expected x:", xtrue, "; fval:", obj(xtrue)
+    print("found    x:", xopt, "; fval:", fopt)
+    print("expected x:", xtrue, "; fval:", obj(xtrue))
     print 
-    print "testing conjugate gradient"
+    print("testing conjugate gradient")
     xopt, fopt = timer(fmin_cg)(obj, obj.grad, x0, verbose=True)
     grad = obj.grad(xopt)
-    print "found    x:", xopt, "; fval:", fopt
-    print "expected x:", xtrue, "; fval:", obj(xtrue)
-    print 
+    print("found    x:", xopt, "; fval:", fopt)
+    print("expected x:", xtrue, "; fval:", obj(xtrue))
+    print()
